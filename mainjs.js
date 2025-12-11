@@ -212,7 +212,7 @@ function renderProductDetail() {
                 </div>
                 <div><button class="btn-buy" onclick="alert('Đã mua hàng thành công!')">Mua ngay</button></div>
             </div>
-            <a href="main.html">Quay về home</a>
+            <a href="index.html">Quay về home</a>
         </div>
     `;
 }
