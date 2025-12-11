@@ -1,7 +1,7 @@
 import { sp } from './product.js';
 
 const menu = [
-    { name: "Trang chủ", link: "main.html" },
+    { name: "Trang chủ", link: "index.html" },
     { name: "Trà sữa", link: "tea.html" },
     { name: "Cà phê", link: "cafe.html" },
     { name: "Menu", submenu: ["Trà sữa", "Cà phê", "Tất cả"], link: "menu.html" },
