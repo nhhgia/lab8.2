@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "username": "nghia",
+        "password": "123456",
+
+        "fullname": "Nghĩa",
+        "email": "nghia@example.com",
+        "phone": "0912345678",
+        "address": "123 Đường ABC, Quận 1, TP.HCM",
+
+        "orders": [1, 2,4,5,6]
+    },
+    {
+        "id": 2,
+        "username": "admin",
+        "password": "admin123",
+
+        "fullname": "Quản trị viên",
+        "email": "admin@example.com",
+        "phone": "0988112233",
+        "address": "456 Đường XYZ, Hà Nội",
+
+        "orders": [2,4,5,6]
+    }
+]

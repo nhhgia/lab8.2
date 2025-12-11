@@ -1,0 +1,424 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+* a{
+text-decoration: none;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f5f2;
+    overflow-x: hidden;
+}
+
+/* ==== CONTAINER CHÍNH ==== */
+.container-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+.headermain {
+    width: 100%;
+    background: #f2d7b5;
+    padding: 12px 0;
+    font-size: 15px;
+    position: relative;
+}
+
+.headermain .wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 56px;
+    position: relative;
+}
+
+.headermain .info-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #552100;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.headermain .login {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.headermain .login a {
+    color: #552100;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.headermain .login a:hover {
+    color: #000;
+}
+
+/* ============================================================
+   MENU
+============================================================ */
+nav {
+    background: #604a01;
+    padding: 0 20px;
+}
+
+nav .nav-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+.mainmenu {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin-left: 30px;
+}
+
+.mainmenu li a {
+    color: white;
+    padding: 8px 0;
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.mainmenu li a:hover {
+    color: #f9dc7d;
+}
+
+/* SUBMENU */
+.submenu {
+    display: none;
+    position: absolute;
+    background: #8b642f;
+    list-style: none;
+    padding: 12px 0;
+    top: 100%;
+    min-width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.submenu li {
+    padding: 8px 20px;
+}
+
+.submenu li:hover {
+    background: #f9dc7d;
+}
+
+.submenu li:hover a {
+    color: #000;
+}
+
+.mainmenu li:hover .submenu {
+    display: block;
+}
+
+/* ============================================================
+   BANNER LỚN
+============================================================ */
+.big-banner img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+/* ============================================================
+   GIỚI THIỆU CỬA HÀNG
+============================================================ */
+.cuahang {
+    width: 100%;
+    display: flex;
+    background: #ffffff;
+    margin: 50px 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.cuahang > div {
+    width: 60%;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cuahang > div h1 {
+    font-size: 36px;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.cuahang > div p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.cuahang > div .button {
+    align-self: flex-start;
+    padding: 14px 32px;
+    background: #e67e22;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cuahang > div .button:hover {
+    background: #d35400;
+    transform: translateY(-2px);
+}
+
+.cuahang img {
+    width: 40%;
+    object-fit: cover;
+}
+
+/* ============================================================
+   HÀNG SẢN PHẨM
+============================================================ */
+.product-row {
+    width: 100%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 24px;
+}
+
+.product-item {
+    background: white;
+    padding: 16px;
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.product-link {
+    pointer-events: auto;
+}
+
+.product-actions {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.product-item h3 {
+    margin: 8px 0;
+    font-weight: bold;
+    color: #5c3d1e;
+    font-size: 15px;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.product-item .price {
+    color: #d32f2f;
+    font-weight: bold;
+    font-size: 17px;
+    margin: 8px 0;
+}
+
+.product-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.product-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    position: relative;
+    z-index: 5;
+}
+
+.btn-buy, .btn-detail {
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    border: none;
+    flex: 1;
+}
+
+.btn-buy {
+    background: #ff5722;
+    color: white;
+    position: relative;
+    z-index: 9999;
+    font-size: small;
+}
+
+.btn-buy:hover {
+    background: #e64a19;
+    transform: translateY(-2px);
+}
+
+.btn-detail {
+    background: #2196f3;
+    color: white;
+    text-decoration: none;
+    align-items: center;
+    text-align: center;
+}
+
+.btn-detail:hover {
+    background: #1e88e5;
+    transform: translateY(-2px);
+}
+
+.product-link {
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+
+.product-actions button,
+.product-actions a {
+    pointer-events: auto;
+}
+/* ============================================================
+   BANNER QUẢNG CÁO
+============================================================ */
+.qc img {
+    width: 100%;
+    border-radius: 14px;
+    height: 280px;
+    object-fit: cover;
+    margin: 50px 0;
+}
+
+/* ============================================================
+   FOOTER – FULL & ĐẸP
+============================================================ */
+footer {
+    background: #111;
+    color: white;
+    padding: 60px 0 30px;
+    margin-top: 80px;
+}
+
+/* Container chính */
+.nd {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+/* Tiêu đề */
+.nd h4 {
+    margin-bottom: 18px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #f9dc7d;
+}
+
+/* Link */
+.nd a {
+    display: block;
+    margin-bottom: 10px;
+    color: #aaa;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.nd a:hover {
+    color: white;
+}
+
+/* Logo */
+.nd img {
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Bản quyền */
+.trachnhiem {
+    max-width: 1280px;
+    margin: 40px auto 0;
+    padding: 20px;
+    border-top: 1px solid #333;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nd {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nd {
+        grid-template-columns: 1fr;
+    }
+}
+.btn-buy {
+    padding: 15px 40px;
+    font-size: 18px;
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(230,126,34,0.4);
+    transition: 0.3s;
+}
+
+.btn-buy:hover {
+    background: #d35400;
+    transform: translateY(-3px);
+}
+
+
+

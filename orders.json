@@ -1,0 +1,33 @@
+[
+    {
+        "orderId": 101,
+        "userId": 1,
+        "items": [
+            { "productId": 1, "quantity": 2 },
+            { "productId": 3, "quantity": 1 }
+        ],
+        "total": 75000,
+        "status": "Đã giao",
+        "date": "2024-12-01"
+    },
+    {
+        "orderId": 102,
+        "userId": 1,
+        "items": [
+            { "productId": 9, "quantity": 1 }
+        ],
+        "total": 25000,
+        "status": "Đang giao",
+        "date": "2024-12-10"
+    },
+    {
+        "orderId": 201,
+        "userId": 2,
+        "items": [
+            { "productId": 7, "quantity": 2 }
+        ],
+        "total": 50000,
+        "status": "Đang xử lý",
+        "date": "2024-12-05"
+    }
+]

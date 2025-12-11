@@ -1,0 +1,170 @@
+/* admin.css */
+:root {
+    --primary: #8B4513;
+    --primary-dark: #6B3A0F;
+    --bg: #f8f9fc;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --border: #e0e0e0;
+    --success: #27ae60;
+    --warning: #f39c12;
+    --danger: #e74c3c;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+body { background:var(--bg); color:var(--text); display:flex; min-height:100vh; }
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: var(--primary);
+    color: white;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+}
+.logo {
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    background: rgba(0,0,0,0.2);
+}
+.menu a {
+    display: block;
+    padding: 18px 30px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    border-left: 4px solid transparent;
+}
+.menu a:hover, .menu a.active {
+    background: rgba(255,255,255,0.15);
+    border-left-color: white;
+}
+.menu i { width: 30px; }
+
+/* Main */
+.main {
+    flex: 1;
+    margin-left: 260px;
+    padding: 30px;
+}
+.header {
+    background: var(--card);
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header h1 { font-size: 28px; color: var(--primary); }
+.user { display: flex; align-items: center; gap: 12px; }
+.user img { width: 44px; height: 44px; border-radius: 50%; }
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+.tab {
+    padding: 14px 28px;
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.tab.active, .tab:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Section */
+.section { display: none; }
+.section.active { display: block; }
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.section-header h2 { font-size: 24px; color: var(--primary); }
+.btn-add {
+    padding: 12px 24px;
+    background: var(--success);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: default;
+}
+
+/* Table */
+.table-wrapper {
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+th {
+    background: #f8f9fa;
+    color: var(--primary);
+    font-weight: 600;
+}
+tr:hover { background: #fff8f0; }
+td img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; }
+
+.status { padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
+.status.active { background:#d5f4e6; color:#27ae60; }
+.status.delivered { background:#d5f4e6; color:#27ae60; }
+.status.processing { background:#fef5e7; color:#f39c12; }
+.status.cancelled { background:#fadbd8; color:#e74c3c; }
+
+.actions button {
+    padding: 8px 14px;
+    margin: 0 4px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    cursor: default;
+}
+.btn-view { background:#3498db; }
+.btn-edit { background:#f39c12; }
+.btn-delete { background:#e74c3c; }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .sidebar { width: 80px; }
+    .logo, .menu span { display: none; }
+    .menu a { text-align: center; }
+    .main { margin-left: 80px; }
+}
+@media (max-width: 768px) {
+    .main { margin-left: 0; padding: 20px; }
+    .header { flex-direction: column; gap: 15px; text-align: center; }
+    .tabs { justify-content: center; }
+    table, thead, tbody, th, td, tr { display: block; }
+    thead tr { position: absolute; top: -9999px; left: -9999px; }
+    tr { margin-bottom: 20px; border: 1px solid var(--border); border-radius: 10px; }
+    td { border: none; position: relative; padding-left: 50%; }
+    td:before { content: attr(data-label); position: absolute; left: 15px; font-weight: bold; }
+}

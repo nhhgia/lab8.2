@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Milk Tea Store</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">Admin</div>
+        <nav class="menu">
+            <a href="#" data-page="products" class="active"><i class="fas fa-coffee"></i> Quản lý sản phẩm</a>
+            <a href="#" data-page="categories"><i class="fas fa-tags"></i> Quản lý danh mục</a>
+            <a href="#" data-page="orders"><i class="fas fa-shopping-cart"></i> Quản lý đơn hàng</a>
+            <a href="main.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+        </nav>
+    </aside>
+    <main class="main">
+        <header class="header">
+            <h1 id="page-title">Quản lý sản phẩm</h1>
+            <div class="user">
+                <span>Chào, Admin</span>
+                <img src="https://via.placeholder.com/44/8B4513/white?text=A" alt="Admin">
+            </div>
+        </header>
+
+        <div id="content-area">
+            <section id="products" class="page">
+                <div class="section-header">
+                    <h2>Quản lý sản phẩm</h2>
+                    <button class="btn-add">+ Thêm sản phẩm mới</button>
+                </div>
+                <input type="text" id="search-product" placeholder="Tìm kiếm theo tên sản phẩm..." class="search-input">
+                <select id="filter-type" class="search-input">
+                    <option value="">Tất cả danh mục</option>
+                    <!-- Options sẽ được thêm động từ JavaScript -->
+                </select>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>ID</th><th>Hình</th><th>Tên sản phẩm</th><th>Giá</th><th>Danh mục</th><th>Trạng thái</th><th>Hành động</th></tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="categories" class="page" style="display:none;">
+                <div class="section-header">
+                    <h2>Quản lý danh mục</h2>
+                    <button class="btn-add">+ Thêm danh mục</button>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>ID</th><th>Tên danh mục</th><th>Số sản phẩm</th><th>Hành động</th></tr></thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="orders" class="page" style="display:none;">
+                <div class="section-header">
+                    <h2>Quản lý đơn hàng</h2>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Mã đơn</th><th>Khách</th><th>Email</th><th>Tổng tiền</th><th>Trạng thái</th><th>Ngày đặt</th><th>Hành động</th></tr></thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+    <script type="module">
+        import { sp } from './product.js';
+
+        document.querySelectorAll('.menu a[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+             const page = this.getAttribute('data-page');
+             document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+                document.getElementById(page).style.display = 'block';
+             document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
+                document.getElementById('page-title').textContent = this.textContent.trim();
+            });
+        });
+
+        // Render products
+        const productsTableBody = document.querySelector('#products tbody');
+        function renderProducts(filteredSp = sp) {
+            let html = '';
+            filteredSp.forEach(item => {
+                html += `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td><img src="${item.img}" alt=""></td>
+                        <td>${item.name}</td>
+                        <td>${item.price}đ</td>
+                        <td>${item.type}</td>
+                        <td><span class="status active">Còn hàng</span></td>
+                        <td class="actions">
+                            <button class="btn-view">Xem</button>
+                            <button class="btn-edit">Sửa</button>
+                            <button class="btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            productsTableBody.innerHTML = html;
+        }
+
+        // Function to filter products based on search and type
+        function filterProducts() {
+            const search = document.getElementById('search-product').value.toLowerCase();
+            const selectedType = document.getElementById('filter-type').value;
+            let filtered = sp;
+            if (search) {
+                filtered = filtered.filter(item => item.name.toLowerCase().includes(search));
+            }
+            if (selectedType) {
+                filtered = filtered.filter(item => item.type === selectedType);
+            }
+            renderProducts(filtered);
+        }
+
+        // Populate filter dropdown with unique types (e.g., "trasua", "cafe")
+        const types = [...new Set(sp.map(item => item.type))];
+        const filterSelect = document.getElementById('filter-type');
+        types.forEach(type => {
+            const option = document.createElement('option');
+            option.value = type;
+            option.textContent = type;
+            filterSelect.appendChild(option);
+        });
+
+        // Initial render
+        filterProducts();
+
+        // Search functionality for products
+        document.getElementById('search-product').addEventListener('keyup', filterProducts);
+
+        // Filter by type functionality
+        document.getElementById('filter-type').addEventListener('change', filterProducts);
+
+        // Render categories
+        function renderCategories() {
+            const types = [...new Set(sp.map(item => item.type))];
+            let html = '';
+            types.forEach((type, index) => {
+                const count = sp.filter(item => item.type === type).length;
+                html += `
+                    <tr>
+                        <td>0${index + 1}</td>
+                        <td>${type}</td>
+                        <td>${count}</td>
+                        <td>
+                            <button class="btn-edit">Sửa</button>
+                            <button class="btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            document.querySelector('#categories tbody').innerHTML = html;
+        }
+        renderCategories();
+
+        // Render orders
+        async function renderOrders() {
+            const res = await fetch('users.json');
+            const users = await res.json();
+            let html = '';
+            let orderCount = 1;
+            users.forEach(user => {
+                if (user.orders && user.orders.length > 0) {
+                    user.orders.forEach(prodId => {
+                        const prod = sp.find(p => p.id === prodId);
+                        if (prod) {
+                            const orderId = `#DH00${orderCount++}`;
+                            const date = new Date().toLocaleDateString('vi-VN');
+                            html += `
+                                <tr>
+                                    <td>${orderId}</td>
+                                    <td>${user.fullname}</td>
+                                    <td>${user.email}</td>
+                                    <td>${prod.price}đ</td>
+                                    <td><span class="status delivered">Đã giao</span></td>
+                                    <td>${date}</td>
+                                    <td><button class="btn-view">Xem chi tiết</button></td>
+                                </tr>
+                            `;
+                        }
+                    });
+                }
+            });
+            document.querySelector('#orders tbody').innerHTML = html;
+        }
+        renderOrders();
+
+        // Mock functionalities for buttons
+        document.querySelectorAll('.btn-add, .btn-edit, .btn-delete, .btn-view').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Chức năng này đang được phát triển (demo).');
+            });
+        });
+    </script>
+</body>
+</html>

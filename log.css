@@ -1,0 +1,252 @@
+/* ====================== RESET & BODY ====================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+* a{
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f5f2;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ====================== HEADER (giống trang chủ) ====================== */
+.headermain {
+    background: #f2d7b5;
+    padding: 15px 0;
+    position: relative;
+    font-size: 15px;
+    text-align: center;
+    color: #552100;
+    font-weight: 600;
+    line-height: 55px;
+}
+
+.headermain p {
+    margin: 0;
+}
+
+.headermain .login {
+    position: absolute;
+    right: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 12px;
+}
+
+.headermain .login a {
+    color: #552100;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.headermain .login a:hover {
+    color: #000;
+}
+
+/* ====================== MENU NAV ====================== */
+nav {
+    background: #604a01;
+    padding: 0 20px;
+}
+
+nav .nav-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+.mainmenu {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin-left: 30px;
+}
+
+.mainmenu li a {
+    color: white;
+    padding: 8px 0;
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.mainmenu li a:hover {
+    color: #f9dc7d;
+}
+
+/* Submenu */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #8b642f;
+    min-width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    padding: 10px 0;
+    z-index: 100;
+}
+
+.submenu li a {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+}
+
+.submenu li:hover {
+    background: #f9dc7d;
+}
+
+.submenu li:hover a {
+    color: #000;
+}
+
+.mainmenu > li:hover .submenu {
+    display: block;
+}
+
+/* ====================== TRANG ĐĂNG NHẬP ====================== */
+
+/* ====================== FOOTER ====================== */
+footer {
+    background: #111;
+    color: #ccc;
+    padding: 60px 20px 30px;
+    margin-top: 80px;
+}
+
+.nd {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.nd > div {
+    font-size: 15px;
+}
+
+.nd h4 {
+    color: #f9dc7d;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.nd a {
+    color: #aaa;
+    text-decoration: none;
+    display: block;
+    margin: 8px 0;
+    transition: color 0.3s;
+}
+
+.nd a:hover {
+    color: white;
+}
+
+.nd img {
+    width: 90px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.trachnhiem {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 14px;
+    color: #777;
+}
+
+
+.log {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://picsum.photos/1600/900?random=88');
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    background: white;
+    padding: 50px 60px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+}
+
+.container h2 {
+    font-size: 32px;
+    color: #604a01;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.container label {
+    display: block;
+    text-align: left;
+    margin: 15px 0 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+.container input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+.container input:focus {
+    outline: none;
+    border-color: #e67e22;
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+}
+
+.container button {
+    width: 100%;
+    padding: 14px;
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.container button:hover {
+    background: #d35400;
+}
+
+#mes {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 24px;
+}

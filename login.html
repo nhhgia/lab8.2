@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="log.css">
+</head>
+<body onload="renderHeader(); renderMenu();renderFooter(); ">
+    <div class="headermain" id="header"></div>
+    <nav><ul class="mainmenu" id="menu"></ul></nav>
+    
+ <div class="log"> <div class="container"><h2>Đăng nhập</h2>
+        <label>User: <br><input type="text" id="username"></label> <br>
+        <label>Mật khẩu <br><input type="text" id="password"></label> <br>
+        <button onclick="login()">Đăng nhập</button>
+        <div id="mes"></div>
+        </div>
+    </div>
+        <footer>
+        <div class="ft-container" id="footer"></div>
+        <div class="copyright">Công ty trách nhiệm hữu hạn một thành viên :P</div>
+    </footer>
+    <script src="log.js"></script>
+  <script type="module" src="mainjs.js"></script>
+</body>
+</html>

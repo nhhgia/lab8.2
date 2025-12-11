@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin tài khoản</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="maincss.css">
+    <style>
+
+        .profile-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 300px auto;
+            gap: 20px;
+        }
+
+        /* LEFT CARD */
+        .profile-left-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .profile-left-card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .profile-left-card h2 {
+            margin: 5px 0;
+        }
+        .profile-left-card p {
+            color: gray;
+        }
+
+        /* RIGHT CARD */
+        .profile-right-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .profile-item {
+            margin-bottom: 15px;
+        }
+        .profile-item label {
+            font-weight: bold;
+            display: block;
+        }
+        .profile-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .profile-btn-logout { background: #d9534f; color: white; }
+        .profile-btn-delete { background: #343a40; color: white; margin-left: 10px; }
+
+            .footer-box {
+            margin-top: 40px;
+            background: #222;
+            padding: 25px 0;
+            color: white;
+        }
+        .footer-box .copyright {
+            text-align: center;
+            margin-top: 15px;
+            color: #ccc;
+        }
+
+        .profile-orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .profile-orders-table th,
+        .profile-orders-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .profile-orders-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .profile-info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .profile-info-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .profile-info-table td:first-child {
+            font-weight: bold;
+            width: 30%;
+        }
+
+    </style>
+
+
+</head>
+
+<body onload="renderHeader(); renderMenu(); renderFooter();">
+<div class="headermain" id="header"></div>
+ <nav><ul class="mainmenu" id="menu"></ul></nav>
+ 
+<div class="profile-container">
+
+    <!-- LEFT USER CARD -->
+    <div class="profile-left-card">
+        <img id="avatar" src="https://i.ibb.co/4pDNDk1/avatar.png" alt="Avatar">
+        <h2 id="usernameDisplay">User</h2>
+        <p id="roleDisplay">Thành viên</p>
+
+        <button class="profile-btn profile-btn-logout" onclick="logout()">Đăng xuất</button>
+    </div>
+
+    <!-- RIGHT INFO CARD -->
+    <div class="profile-right-card">
+        <h3>Thông tin người dùng</h3>
+        <table class="profile-info-table">
+            <tr>
+                <td>Họ và tên:</td>
+                <td id="fullname"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td id="email"></td>
+            </tr>
+            <tr>
+                <td>Địa chỉ:</td>
+                <td id="address"></td>
+            </tr>
+        </table>
+        <div class="profile-item">
+            <label>Danh sách đơn hàng:</label>
+            <div id="orders"></div>
+        </div>
+        
+    </div>
+
+</div>
+
+    <footer class="footer-box">
+        <div class="ft-container" id="footer"></div>
+        <div class="copyright">Công ty trách nhiệm hữu hạn một thành viên :P</div>
+    </footer>
+
+ <script type="module" src="mainjs.js"></script>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const userId = sessionStorage.getItem("userId");
+        if (!userId) {
+            window.location.href = "login.html";
+        }
+
+        // Load user info
+        fetch("users.json")
+            .then(res => res.json())
+            .then(users => {
+                const user = users.find(u => u.id == userId);
+                if (!user) return;
+
+                document.getElementById("usernameDisplay").innerText = user.username;
+                document.getElementById("fullname").innerText = user.fullname;
+                document.getElementById("email").innerText = user.email;
+                document.getElementById("address").innerText = user.address;
+                document.getElementById("roleDisplay").innerText = user.role || "Thành viên";
+
+                // Render orders as table
+                let ordersHtml = '<table class="profile-orders-table"><thead><tr><th>Tên sản phẩm</th><th>Giá</th></tr></thead><tbody>';
+                if (user.orders && user.orders.length > 0) {
+                    user.orders.forEach(id => {
+                        const prod = window.getProductById(parseInt(id));
+                        if (prod) {
+                            ordersHtml += `<tr><td>${prod.name}</td><td>${prod.price}đ</td></tr>`;
+                        }
+                    });
+                } else {
+                    ordersHtml += '<tr><td colspan="2">Không có đơn hàng</td></tr>';
+                }
+                ordersHtml += '</tbody></table>';
+                document.getElementById("orders").innerHTML = ordersHtml;
+            });
+    });
+
+    function logout() {
+        sessionStorage.clear();
+        alert("Đã đăng xuất!");
+        window.location.href = "main.html";
+    }
+
+    function deleteAccount() {
+        alert("Demo – Không thể xóa tài khoản khi dùng JSON file.");
+    }
+</script>
+
+</body>
+</html>
