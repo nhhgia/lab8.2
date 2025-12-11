@@ -77,7 +77,7 @@ function login() {
         document.getElementById("mes").innerHTML = "Đăng nhập thành công";
 
         setTimeout(() => {
-            window.location.href = "main.html";
+            window.location.href = "index.html";
         }, 1500);
     } else {
         document.getElementById("mes").innerHTML =
